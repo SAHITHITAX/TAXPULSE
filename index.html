@@ -321,8 +321,8 @@ a:hover {
 <!-- Main Website Content (hidden initially) -->
 <div id="websiteContent" class="website-content" style="display: none;">
   <div class="top-bar">
-    <a class="link-button" href="#">TaxPulse Portal</a> <p> &nbsp;|&nbsp; </p>    <a class="link-button" href="#"> <span id="loggedInUser">admin</span> </a>   <p> &nbsp;|&nbsp; </p>  <a class="link-button" href="#">User Registration</a>
- <p> &nbsp;|&nbsp; </p> <a href="https://script.google.com/macros/s/AKfycbyCvFB3A0apUam1Je0FIyxHlSVoTyFz0nwy4cFHOVUbyZXbjalgCSq1B4WIEBW3EIHqcQ/exec">Application Status</a> <p> &nbsp;|&nbsp; </p><a class="link-button" href="#">User Commision Details</a> <p> &nbsp;|&nbsp; </p> <a href="#" onclick="logout()">Logout</a></div>
+    <a class="link-button" href="#">TaxPulse Portal</a> <p> &nbsp;|&nbsp; </p>    <a class="link-button" href="#"> <span id="loggedInUser">admin</span> </a>  &nbsp;  <p> &nbsp;|&nbsp; </p>  <a class="link-button" href="#">User Registration</a>  &nbsp;
+ <p> &nbsp;|&nbsp; </p> <a class="appstat" href="https://script.google.com/macros/s/AKfycbyCvFB3A0apUam1Je0FIyxHlSVoTyFz0nwy4cFHOVUbyZXbjalgCSq1B4WIEBW3EIHqcQ/exec">Application Status</a> <p> &nbsp;|&nbsp; </p><a class="link-button" href="#">User Commision Details</a> <p> &nbsp;|&nbsp; </p> <a href="#" onclick="logout()">Logout</a></div>
   <br><br>
   <div class="coretax-container">
     Tax Pulse
@@ -452,7 +452,7 @@ a:hover {
       "3681912073": {
       password: "Anja@123",
       formLink: "https://script.google.com/macros/s/AKfycbyGqsVulBUZon6SLgHrokk1DKn5fgxddj7KubFU1IYU7NqyD6u8zWy_9H6JEqNljzJekA/exec",
-      applink: "https://script.google.com/macros/s/AKfycbycaqp1IO46HEY8uzbBbfs7vLY_Q1afWY66ONGzFXwrDWpQqQ2pupY9JmYXDtD2Fn2KMQ/exec"
+      appLink: "https://script.google.com/macros/s/AKfycbycaqp1IO46HEY8uzbBbfs7vLY_Q1afWY66ONGzFXwrDWpQqQ2pupY9JmYXDtD2Fn2KMQ/exec"
     },
       "5449318114": {
       password: "Taxpulse@123",
@@ -465,8 +465,16 @@ a:hover {
     },
     "0064290307": {
       password: "Nikhil@123",
-      formLink: "https://script.google.com/macros/s/AKfycbzcIw_ERSoiVviCbfqxquS2uVyigo-g2_1rr8E4OxF0wPabzYbT2naFOAfU7tJaD803tg/exec"
+      formLink: "https://script.google.com/macros/s/AKfycbweixrwT12SvGXoLtPXo4SBsc8aJDN_TrtbNeTuN4zcHVqlYdWFvAbpmdAJWV9ViNxqHw/exec",
+      appLink: "https://script.google.com/macros/s/AKfycbycaqp1IO46HEY8uzbBbfs7vLY_Q1afWY66ONGzFXwrDWpQqQ2pupY9JmYXDtD2Fn2KMQ/exec"
     },
+
+    "3251842143": {
+      password: "Nikhil@123",
+      formLink: "https://script.google.com/macros/s/AKfycbwL8dNeYi7WsGHQPq-7lnzsgkcH1LsZp04fdQm7zuelv31GgOlE7hYd4Dy5AypsL8suPg/exec",
+      appLink: "https://script.google.com/macros/s/AKfycbym0fALqPPrTFeOId4xhZBilk0XDoT63VDlhcrOYZdNWf5aOoF_xcQTFanEhueIdfgOAQ/exec"
+    },
+
     "5971817091": {
       password: "Nikhil@123",
       formLink: "https://script.google.com/macros/s/AKfycbwGJ7MPJi7sd45Nk6XVwvG4c7KiKn9T8gyBdzsZR3FwrGd2DO03ynf0IYbZvYrYrue1FA/exec"
@@ -475,7 +483,8 @@ a:hover {
 
   function updateLinks(username) {
     const formLink = validUsers[username].formLink;
-    
+    const appLink = validUsers[username].appLink;
+
     // Update all links based on their classes
     document.querySelectorAll('.pan-link').forEach(link => {
       link.href = formLink;
@@ -511,6 +520,10 @@ a:hover {
     
     document.querySelectorAll('.other-link').forEach(link => {
       link.href = formLink;
+    });
+
+    document.querySelectorAll('.appstat').forEach(link => {
+      link.href = appLink;
     });
   }
 
