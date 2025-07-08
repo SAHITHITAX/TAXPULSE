@@ -1,508 +1,231 @@
-<html><head>
-  <base target="_top">
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&amp;display=swap" rel="stylesheet">
-  <style>
-    /* Login Page Styles */
-    .login-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #fff;
-      background-size: cover;
-    }
-    
-    .login-form {
-      background: rgba(255, 255, 255, 0.9);
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgb(96 238 14 / 56%);
-      width: 350px;
-      text-align: center;
-    }
-    
-    .login-form h2 {
-      color: #145886;
-      margin-bottom: 20px;
-    }
-    
-    .login-form input {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      font-size: inherit;
-    }
-    
-    .login-form button {
-      background-color: #fff;
-      color: black;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      width: 100%;
-      margin-top: 10px;
-      font-weight: bold;
-    }
-    
-    .login-form button:hover {
-      background-color: #55B848;
-    }
-    
-    .error-message {
-      color: red;
-      margin-top: 10px;
-      display: none;
-    }
-    
-    /* Main Website Styles (hidden initially) */
-    .website-content {
-      display: none;
-    }
-    
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 20px;
-      background: white;
-      background-size: cover;
-      color: white;
-      font-family: 'Lora', serif;
-    }
-    
-    p {
-      color: white;
-      margin-bottom: 15px;
-    }
-    
-    .hidden {
-      display: none;
-    }
-    
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      scroll-snap-type: y mandatory;
-      overflow-y: scroll;
-    }
-    
-    form {
-      max-width: 400px;
-      margin: auto;
-      text-align: left;
-      padding: 20px;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-      color: black;
-    }
-    
-    label {
-      color: black;
-      font-weight: bold;
-    }
-    
-    input {
-      width: 100%;
-      padding: 8px;
-      margin: 5px -5px;
-      border: 1px #ccc;
-      border-radius: 5px;
-      background: white;
-      color: black;
-    }
-    
-    button {
-      margin: 10px 0;
-    }
-    
-    input::placeholder {
-      color: #555;
-    }
-    
-    input[type="file"] {
-      color: black;
-      border: none;
-    }
-    
-    .container {
-      background: white;
-      display: flex;
-      justify-content: space-between;
-    }
-    
-    .button {
-      text-align: left;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-      font-family: 'Lora', serif;
-    }
-    
-    .button:hover {
-      background-color: white;
-    }
-    
-    .box {
-      width: 320px;
-      height: AUTO;
-      text-align: left;
-      padding: 10px;
-      MARGIN: 20px;
-box-shadow: 0 0 20px #14588666;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Digital Team HTML5 Layout - Tooplate</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+<!--
 
-    }
-      .box1 {
-      width: 250px;
-      height: 700px;
-      text-align: left;
-      padding: 20px;
-    }
-    .box p {
-      margin: 5px;
-    }
-     .box1 p {
-      margin: 10px;
-    }
-    /* Fixed Top Bar Styles */
-.top-bar {
-  background-color: #55B848;
-  color: black;
-  padding: 5px 20px; /* Reduced padding to help achieve 25px height */
-  text-align: center;
-  font-size: 16px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 96.35	%;
-  height: 25px; /* Corrected property name and value */
-  z-index: 1000;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  display: flex;
-  justify-content: center; /* Added center alignment */
-  align-items: center;
-}
-    .top-bar a {
-      color: white;
-      text-decoration: none;
-      margin-left: 15px;
-    }
-    
-    .top-bar a:hover {
-      text-decoration: underline;
-    }
-    
-    span {
-      display: block;
-      text-align: left;
-    }
-    
-    a {
-      color: #145886;
-      text-align: left;
-      display: block;
-      text-decoration: none;
-      font-size: 16px;
-      font-family: 'Lora', serif;
-      margin: 10px 0;
-     margin-left: 30px;
-    }
-    
-a:hover {
-  text-decoration: underline;
-  text-decoration-color: #55B848;
-}
-    
-    h1 {
-      font-size: 72px;
-      color: white;
-    }
-    
-    h2 {
-      background:#fff;
-      color: #55b848;
-     margin-left: 30px;
-    display: inline;
-  box-shadow: inset 0 -0.07em 0 #145886;
-    
-    }
-    
-    .info-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      font-size: 24px;
-      font-weight: bold;
-      gap: 20px;
-      padding: 20px;
-    }
-    
-    .coretax-container {
-      text-align: center;
-      font-size: 102px;
-      color: #145886;
-      position: relative;
-      display: inline-block;
-      background: ;
-    }
-    
-    .hover-info {
-      visibility: hidden;
-      opacity: 0;
-      position: absolute;
-      background-color: #333;
-      color: #fff;
-      padding: 10px;
-      border-radius: 5px;
-      font-size: 20px;
-      bottom: -50px;
-      left: 50%;
-      transform: translateX(-50%);
-      white-space: nowrap;
-      transition: opacity 0.3s ease-in-out, visibility 0.3s;
-    }
-    
-    .coretax-container:hover .hover-info {
-      visibility: visible;
-      opacity: 1;
-    }
-    
-    .footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background-color: #55b848;
-      color: white;
-      text-align: center;
-      padding: 10px;
-      font-size: 16px;
-    }
-    
-    @media (max-width: 768px) {
-      .container {
-        flex-direction: column;
-      }
-      
-      .box {
-        width: 100%;
-        height: auto;
-        margin-bottom: 20px;
-      }
-      
-      .coretax-container {
-        font-size: 72px;
-      }
-    }
+Template 2075 Digital Team
 
+http://www.tooplate.com/view/2075-digital-team
 
-  </style>
+-->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/animate.min.css">
+	<link rel="stylesheet" href="css/et-line-font.css">
+	<link rel="stylesheet" href="css/nivo-lightbox.css">
+	<link rel="stylesheet" href="css/nivo_themes/default/default.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500' rel='stylesheet' type='text/css'>
 </head>
-<body>
+<body data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 
-
-
-<!-- Main Website Content (hidden initially) -->
-<div>
-  <div class="top-bar">
-    <a class="link-button" href="#">TaxPulse Portal</a> <p> &nbsp;|&nbsp; </p>    <a class="link-button" href="#"> <span id="loggedInUser">admin</span> </a>   <p> &nbsp;|&nbsp; </p>  <a class="link-button" href="#">User Registration</a>
- <p> &nbsp;|&nbsp; </p> <a href="https://script.google.com/macros/s/AKfycbyCvFB3A0apUam1Je0FIyxHlSVoTyFz0nwy4cFHOVUbyZXbjalgCSq1B4WIEBW3EIHqcQ/exec">Application Status</a> <p> &nbsp;|&nbsp; </p><a class="link-button" href="#">User Commision Details</a> <p> &nbsp;|&nbsp; </p></div>
-  <br><br>
-  <div class="coretax-container">
-    TaxPulse
-    <div class="hover-info">sahithitaxconsultancy@gmail.com | 8499994485</div>
-    <p style="color: black; font-size: 20px;">We provide expert tax consultation services.</p>
-    <p style="color: black; font-size: 20px;">A Division of Sahithi Tax Consultancy</p>
-  </div>
-
-  <div class="container">
-    <div class="box">
-      <h2>PAN/TAN Services</h2>
-      <a class="link-button pan-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec" target="_blank">
-        Apply for New PAN (Individual, Firm, Company etc,)
-      </a>
-      <a class="link-button pan-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec" target="_blank">
-        Apply for PAN Correction (Individual, Firm, Company etc,)
-      </a>
-      <a class="link-button pan-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">Apply for PAN Reprint</a>
-      <a class="link-button pan-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">Apply for PAN - PAN allotted already (PAN Number lost)</a>
-      <a class="link-button pan-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">Duplicate PAN Cancellation</a>
-      <a class="link-button pan-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">Apply for TAN</a>
- </div>
-
-    <div class="box">
-      <h2>Aadhar Services</h2>
-      <a class="aadhar-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">Aadhar PAN Link</a>
-      <a class="aadhar-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">Aadhar Father name Correction</a>
-      <a class="aadhar-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">Aadhar Address Correction</a>
-      <a class="aadhar-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">VOTER ID</a>
+<!-- preloader section -->
+<div class="preloader">
+	<div class="sk-spinner sk-spinner-circle">
+       <div class="sk-circle1 sk-circle"></div>
+       <div class="sk-circle2 sk-circle"></div>
+       <div class="sk-circle3 sk-circle"></div>
+       <div class="sk-circle4 sk-circle"></div>
+       <div class="sk-circle5 sk-circle"></div>
+       <div class="sk-circle6 sk-circle"></div>
+       <div class="sk-circle7 sk-circle"></div>
+       <div class="sk-circle8 sk-circle"></div>
+       <div class="sk-circle9 sk-circle"></div>
+       <div class="sk-circle10 sk-circle"></div>
+       <div class="sk-circle11 sk-circle"></div>
+       <div class="sk-circle12 sk-circle"></div>
     </div>
-
-    <div class="box">
-      <h2>GST Services</h2>
-      <a class="gst-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec" target="_blank">
-        New GST Registration
-      </a>
-      <a class="gst-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec" target="_blank">GST Return Filing</a>
-      <a class="gst-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec" target="_blank">GST Consultation</a>
-      <a class="gst-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">Cancellation of GST</a>
-      <a class="gst-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">GST Notice</a>
-      <a class="gst-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">Composition Scheme</a>
-      <a class="gst-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">Gst Refund</a>
-      <a class="gst-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">E-way Bill</a>
-      <a class="gst-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">Casual Taxable Person - GST</a>
-       </div>
-
-    <div class="box">
-<h2>Certifications</h2>
-      <a class="link-button cert-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">Turnover Certificate</a>
-      <a class="link-button cert-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">Networth Certificate</a>
-      <a class="link-button cert-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">Accounting</a>
-      <a class="link-button cert-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">CA Report</a>
-      <a class="link-button cert-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">Finanacial Statements</a>
-      <a class="udin-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">UDIN Certification Services</a>
-    </div>
-
-  </div>
-
-  <div class="container">
-
-    <div class="box">
-      <h2>Income Tax</h2>
-      <a class="link-button it-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">ITR Filing (3 Years)</a>
-      <a class="link-button it-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">Form 26AS (Form 16)</a>
-      <a class="link-button it-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">Income Tax Notice</a>
-      <a class="link-button it-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">Income Tax Refund</a>
-      <a class="link-button it-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">TDS/TCS Filing</a>
-      <a class="link-button it-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">Capital Gains (Shares, Options, Mutual Funds)</a>
-      <a class="link-button it-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">Tax Planning</a>
-      <a class="link-button it-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">Tax Audit</a>
-      </div>
-
-    <div class="box">
- <h2>MCA Services</h2>
-      <a class="mca-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec" target="_blank">New Company Registration(Pvt, Ltd, OPC etc)</a>
-      <a class="mca-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec" target="_blank">MCA Filings</a>
-      <a class="mca-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec" target="_blank">ROC Comliances</a>
-      <a class="mca-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec" target="_blank">LLP Registration</a>
-      <a class="mca-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec" target="_blank">Firm Registration</a>
-      <a class="mca-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec" target="_blank">DIN-Director Services</a>
-      <a class="mca-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec" target="_blank">Stratup Registration</a>
-    </div>
-
-    <div class="box">
-      <h2>Reg &amp; Licences</h2>
-      <a class="reg-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec" target="_blank">EPF | ESI Registration</a>
-      <a class="reg-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">MSME (Udyam Registration)</a>
-      <a class="reg-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">Trademark Registration</a>
-      <a class="reg-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">HUF Registration</a>
-      <a class="reg-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">Professional Tax Registration (payments &amp; Return)</a>
-      <a class="reg-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec" target="_blank">Labour Licence</a>
-      <a class="reg-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">GHMC Trade Licence</a>
-      <a class="reg-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">Food Licence (FSSAI)</a>
-      <a class="reg-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">Import Export Code (IEC) LICENCE</a>
-       </div>
-
-    <div class="box">
-<h2>Other Services</h2>
-      <a class="other-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">EPF Withdrawal</a>
-      <a class="other-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">Digital Signature (DSC)</a>
-      <a class="other-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">Payroll Outsourse</a>
-      <a class="other-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">E-Commerce Consultation</a>
-      <a class="other-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">Rental/Lease Deed</a>
-      <a class="other-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">Partnership Deed</a>
-      <a class="other-link" href="https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec">Agreements, Contracts etc,</a>
-    </div>
-  </div>
-
-  <p class="footer">TaxPulse Private Limited | sahithitaxconsultancy@gmail.com | 8499994485</p>
 </div>
 
-<script>
-  // List of valid users and their corresponding form links
-  const validUsers = {
-    "admin": {
-      password: "password123",
-      formLink: "https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec"
-    },
-    "7647475133": {
-      password: "12345678",
-      formLink: "https://script.google.com/macros/s/AKfycbwKpEP4Fqh9L9ll-gyCDnUAyBL7Kjcn9J7MzgZkgJWp0N5DYTnewVNTfLZPIWGKc-Ia8w/exec"
-    },
-     "1990578364": {
-      password: "Yada@939",
-      formLink: "https://script.google.com/macros/s/AKfycbyVFYFVVTtd0GevGtfWCtfygFDmmVBHtwUCys6e3xRLjsZ_F8RvZQlOx0uJAJZTbLdPbQ/exec"
-    },
-      "3681912073": {
-      password: "Anja@123",
-      formLink: "https://script.google.com/macros/s/AKfycbyGqsVulBUZon6SLgHrokk1DKn5fgxddj7KubFU1IYU7NqyD6u8zWy_9H6JEqNljzJekA/exec",
-      applink: "https://script.google.com/macros/s/AKfycbycaqp1IO46HEY8uzbBbfs7vLY_Q1afWY66ONGzFXwrDWpQqQ2pupY9JmYXDtD2Fn2KMQ/exec"
-    },
-      "5449318114": {
-      password: "Taxpulse@123",
-      formLink: "https://script.google.com/macros/s/AKfycbzk4IWpN9rHGqEiSZA6TooXTJOwiHhTERhW9tqGAXAb11YdIwbVWqcChjtsLOgWh_yZMg/exec",
-      applink: "https://script.google.com/macros/s/AKfycbxSIA4NoqzuJqopqTMhQWtpY2mWwZAzd1E7oQpA4wCDhgRHPeDPlzr2lJY0OzoNlNknIA/exec"
-    },
-    "sahithi": {
-      password: "coretax123",
-      formLink: "https://script.google.com/macros/s/AKfycbzAAB-lLEVbeLE5TNU1nEkq2eL1xZKZvSiwAxyEHH-BJVS3FVPqWq0duc_DG_qz5el9Sw/exec"
-    },
-    "5971817091": {
-      password: "Nikhil@123",
-      formLink: "https://script.google.com/macros/s/AKfycbxW1xNqvqMcP2DAOAMm97V4tlTlsy60j27sLiNDWTJ92O13Y8Ni2qxeggL9QNlnbpR-5g/exec"
-    }
-  };
+<!-- navigation section -->
+<section class="navbar navbar-fixed-top custom-navbar" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="icon icon-bar"></span>
+				<span class="icon icon-bar"></span>
+				<span class="icon icon-bar"></span>
+			</button>
+			<a href="#" class="navbar-brand"> <span style="font-family; HK Modular; color: #ffffff; font-size: 34px; margin-top:100px; margin-left: 0px" >TAX</span><img style="width: 300px; hieght:70px; margin-top: -68px; margin-left: -40px" src="https://i.postimg.cc/qR5F5bcj/image.png" alt="Description of the image">
+</a>
+		</div>
+		<div class="collapse navbar-collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#home" class="smoothScroll">HOME</a></li>
+				<li><a href="#work" class="smoothScroll">WORK</a></li>
+				<li><a href="#about" class="smoothScroll">ABOUT</a></li>
+				<li><a href="#contact" class="smoothScroll">CONTACT</a></li>
+                                <li><a href="https://sahithitax.github.io/CORETAX/#" class="smoothScroll">USER LOGIN</a></li>
+			</ul>
+		</div>
+	</div>
+</section>
 
-  function updateLinks(username) {
-    const formLink = validUsers[username].formLink;
-    
-    // Update all links based on their classes
-    document.querySelectorAll('.pan-link').forEach(link => {
-      link.href = formLink;
-    });
-    
-    document.querySelectorAll('.aadhar-link').forEach(link => {
-      link.href = formLink;
-    });
-    
-    document.querySelectorAll('.gst-link').forEach(link => {
-      link.href = formLink;
-    });
-    
-    document.querySelectorAll('.cert-link').forEach(link => {
-      link.href = formLink;
-    });
-    
-    document.querySelectorAll('.udin-link').forEach(link => {
-      link.href = formLink;
-    });
-    
-    document.querySelectorAll('.it-link').forEach(link => {
-      link.href = formLink;
-    });
-    
-    document.querySelectorAll('.mca-link').forEach(link => {
-      link.href = formLink;
-    });
-    
-    document.querySelectorAll('.reg-link').forEach(link => {
-      link.href = formLink;
-    });
-    
-    document.querySelectorAll('.other-link').forEach(link => {
-      link.href = formLink;
-    });
-  }
+<!-- home section -->
+<section id="home">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<h3>INCOME TAX / GST / MCA</h3>
+				<h1>TAX PULSE</h1>
+				<hr>
+				<a href="#work" class="smoothScroll btn btn-danger">What we do</a>
+				<a href="#contact" class="smoothScroll btn btn-default">Talk to us</a>
+			</div>
+		</div>
+	</div>		
+</section>
 
- 
-  </script>
+<!-- work section -->
+<section id="work">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<div class="section-title">
+					<strong>01</strong>
+					<h1 class="heading bold">WHAT WE DO</h1>
+					<hr>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.6s">
+				<i class="icon-cloud medium-icon"></i>
+					<h3>INCOME TAX</h3>
+					<hr>
+					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteu sunt in culpa qui officia.</p>
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.9s">
+				<i class="icon-mobile medium-icon"></i>
+					<h3>GST</h3>
+					<hr>
+					<p>Digital Team is free responsive Bootstrap v3.3.5 layout from <a rel="nofollow" href="http://www.tooplate.com" target="_parent">Tooplate</a>. Images are from <a rel="nofollow" href="http://pixabay.com" target="_parent">Pixabay</a> free photo website.</p>
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="1s">
+				<i class="icon-laptop medium-icon"></i>
+					<h3>MCA</h3>
+					<hr>
+					<p>You can edit and use this template for your websites. Please tell your friends about Tooplate. Thank you for visiting our website.</p>
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="1s">
+				<i class="icon-compass medium-icon"></i>
+					<h3>PAN AND TAN</h3>
+					<hr>
+					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteu sunt in culpa qui officia.</p>
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="1s">
+				<i class="icon-chat medium-icon"></i>
+					<h3>REGISTRATIONS AND LINCENCES</h3>
+					<hr>
+					<p>You can easily change icons by looking at <a href="https://www.elegantthemes.com/blog/resources/how-to-use-and-embed-an-icon-font-on-your-website" target="_blank">ET Line Icons</a>. Excepteu sunt in culpa qui officia. Duis aute irure dolor in reprehenderit.</p>
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="1s">
+				<i class="icon-browser medium-icon"></i>
+					<h3>CA SERVICES</h3>
+					<hr>
+					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteu sunt in culpa qui officia.</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- about section -->
+<section id="about">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-sm-12 text-center">
+				<div class="section-title">
+					<strong>02</strong>
+					<h1 class="heading bold">OUR COMPANY</h1>
+					<hr>
+				</div>
+			</div>
+			<div class="col-md-6 col-sm-12">
+				<img src="images/about-img.jpg" class="img-responsive" alt="about img">
+			</div>
+			<div class="col-md-6 col-sm-12">
+				<h3 class="bold">Tax Pulse Team</h3>
+				<h1 class="heading bold">Best Tax Consulting Agency from Hyderabad</h1>
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs" role="tablist">
+				
+				<!-- tab panes -->
+				<div class="tab-content">
+					<div >
+						<p>Duis aute irure dolor in <a href="#">reprehenderit</a> in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Sed id est tincidunt, iaculis nulla vel, sodales metus. Morbi interdum accumsan augue, in accumsan neque lacinia sed. Fusce cursus eu ligula ut gravida.</p>
+						<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet. Dolore magna aliquam erat volutpat.</p>
+					</div>
+					
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 
 
+<!-- contact section -->
+<section id="contact">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-sm-12 text-center">
+				<div class="section-title">
+					<strong>03</strong>
+					<h1 class="heading bold">CONTACT US</h1>
+					<hr>
+				</div>
+			</div>
+			<div class="col-md-6 col-sm-12 contact-info">
+				<h2 class="heading bold">CONTACT INFO</h2>
+				<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteu sunt in culpa qui officia deserunt mollit anim id.</p>
+				<div class="col-md-6 col-sm-4">
+					<h3><i class="icon-envelope medium-icon wow bounceIn" data-wow-delay="0.6s"></i> EMAIL</h3>
+					<p>taxpulz.@gmail.com</p>
+				</div>
+				<div class="col-md-6 col-sm-4">
+					<h3><i class="icon-phone medium-icon wow bounceIn" data-wow-delay="0.6s"></i> PHONE</h3>
+					<p>+91 8499994485</p>
+				</div>
+			</div>
+							</form>
+			</div>
+		</div>
+	</div>
+</section>
 
-</body></html>
+<!-- footer section -->
+<footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<p>Copyright © Digital Team HTML5 Template | Design: <a href="http://www.tooplate.com" target="_parent">Tooplate</a></p>
+				<hr>
+				<ul class="social-icon">
+					<li><a href="#" class="fa fa-facebook wow fadeIn" data-wow-delay="0.3s"></a></li>
+					<li><a href="#" class="fa fa-twitter wow fadeIn" data-wow-delay="0.6s"></a></li>
+					<li><a href="#" class="fa fa-dribbble wow fadeIn" data-wow-delay="0.9s"></a></li>
+					<li><a href="#" class="fa fa-behance wow fadeIn" data-wow-delay="0.9s"></a></li>
+					<li><a href="#" class="fa fa-tumblr wow fadeIn" data-wow-delay="0.9s"></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/smoothscroll.js"></script>
+<script src="js/isotope.js"></script>
+<script src="js/imagesloaded.min.js"></script>
+<script src="js/nivo-lightbox.min.js"></script>
+<script src="js/jquery.backstretch.min.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/custom.js"></script>
+
+</body>
+</html>
