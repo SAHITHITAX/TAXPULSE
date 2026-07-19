@@ -91,7 +91,7 @@
     .navbar-toggler-icon { filter: brightness(0) invert(1); width: 1.2em; height: 1.2em; }
     .scrolled .navbar-toggler-icon { filter: none; }
 
-    /* ----- FIX: Mobile menu overlay - clean, no overlap ----- */
+    /* ----- FIX: Mobile menu overlay - clean, no overlap, dropdown works ----- */
     @media (max-width: 991.98px) {
       .navbar-collapse {
         position: fixed;
@@ -115,12 +115,13 @@
       .navbar-collapse .navbar-nav {
         flex-direction: column;
         align-items: center;
-        gap: 12px;
-        margin-top: 20px;
+        gap: 8px;
+        margin-top: 16px;
+        width: 100%;
       }
       .navbar-collapse .nav-link {
         color: #fff !important;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         padding: 10px 20px;
         width: 100%;
         text-align: center;
@@ -131,6 +132,7 @@
         background: rgba(255,255,255,0.08);
         color: #06b6d4 !important;
       }
+      /* dropdown inside mobile */
       .navbar-collapse .dropdown-menu {
         background: rgba(255,255,255,0.06);
         backdrop-filter: blur(12px);
@@ -140,6 +142,12 @@
         border-radius: 16px;
         width: 100%;
         text-align: center;
+        position: relative !important;
+        transform: none !important;
+        top: auto !important;
+        left: auto !important;
+        float: none;
+        box-shadow: none;
       }
       .navbar-collapse .dropdown-item {
         color: #cbd5e1;
@@ -194,11 +202,24 @@
       .navbar-collapse .nav-close:hover {
         opacity: 1;
       }
-      .navbar-toggler.collapsed .navbar-toggler-icon {
-        filter: brightness(0) invert(1);
+      /* fix for dropdown positioning on mobile */
+      .navbar-collapse .dropdown {
+        width: 100%;
       }
-      .navbar-toggler:not(.collapsed) .navbar-toggler-icon {
-        filter: brightness(0) invert(1);
+      .navbar-collapse .dropdown-menu.show {
+        display: block !important;
+        position: relative !important;
+        background: rgba(255,255,255,0.06);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 16px;
+        margin-top: 4px;
+        padding: 8px 0;
+      }
+      .navbar-collapse .dropdown-menu .dropdown-item {
+        color: #cbd5e1;
+        padding: 8px 20px;
+        text-align: center;
       }
       .navbar-premium.scrolled .navbar-collapse .nav-link {
         color: #fff !important;
@@ -556,16 +577,17 @@
 
 <!-- NAVIGATION -->
 <nav class="navbar navbar-expand-lg navbar-premium" id="mainNav">
-   <div class="container">
+  <div class="container">
     <a class="navbar-brand" href="#">
       <img src="https://i.ibb.co/ccYqvbWz/image-removebg-preview-48.png" alt="Tax Lucid Logo" height="450" style="max-height:50px; width:auto; display:block;">
     </a>
-    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-expanded="false" aria-controls="navMenu">
       <span class="navbar-toggler-icon"></span>
     </button>
+    <div class="collapse navbar-collapse" id="navMenu">
       <ul class="navbar-nav ms-auto align-items-lg-center gap-1 gap-lg-2 mt-2 mt-lg-0">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Services</a>
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Services</a>
           <ul class="dropdown-menu glass-card border-0 mt-1">
             <li><a class="dropdown-item" href="#"><i class="fas fa-file-invoice me-2"></i>Income Tax</a></li>
             <li><a class="dropdown-item" href="#"><i class="fas fa-receipt me-2"></i>GST</a></li>
@@ -789,14 +811,11 @@
         <p class="text-muted small" style="text-align:left;max-width:100%;">A brand of TAXPULSE CONSULTING PRIVATE LIMITED</p>
         <div class="company-detail">
           <div><span class="label">CIN:</span> <strong>U69202TS2025PTC198715</strong></div>
-          <div><span class="label">Incorporated:</span> 19th May, 2025 (1 year, 2 months old)</div>
+         
           <div><span class="label">Status:</span> <span style="color:#22c55e;">● Active</span></div>
-          <div><span class="label">Class:</span> Private</div>
-          <div><span class="label">Category:</span> Non-govt company</div>
-          <div><span class="label">ROC:</span> RoC-Hyderabad</div>
-          <div><span class="label">Authorized Capital:</span> ₹1,00,000</div>
+    
           <div><span class="label">Paid-up Capital:</span> ₹1,00,000</div>
-          <div><span class="label">Directors:</span> Alekhya Jetla, Vasoori Anjamma</div>
+          <div><span class="label">Managing Director:</span> Alekhya Jetla</div>
           <div><span class="label">Business Activity:</span> Tax consultancy</div>
         </div>
       </div>
@@ -881,12 +900,30 @@
   gsap.from('.hero-content p', { opacity: 0, y: 20, duration: 0.9, delay: 0.4 });
   gsap.from('.hero-content .btn, .hero-content .hero-stats', { opacity: 0, y: 16, duration: 0.7, delay: 0.5, stagger: 0.1 });
 
+  // Improved mobile menu close on any link click (including dropdown items)
   document.querySelectorAll('#navMenu .nav-link, #navMenu .dropdown-item, #navMenu .btn').forEach(link => {
     link.addEventListener('click', () => {
       const menu = document.getElementById('navMenu');
       if (menu.classList.contains('show')) {
         const toggler = document.querySelector('.navbar-toggler');
-        toggler.click();
+        if (toggler) toggler.click();
+      }
+    });
+  });
+
+  // Fix for mobile dropdown toggle: ensure proper behavior
+  document.querySelectorAll('#navMenu .dropdown-toggle').forEach(toggle => {
+    toggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      const parent = this.closest('.dropdown');
+      if (parent) {
+        const menu = parent.querySelector('.dropdown-menu');
+        if (menu) {
+          // Toggle the 'show' class manually for mobile
+          if (window.innerWidth < 992) {
+            menu.classList.toggle('show');
+          }
+        }
       }
     });
   });
